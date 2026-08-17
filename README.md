@@ -147,7 +147,7 @@ El personal clínico comparte un panel unificado diseñado para optimizar el flu
 
 ---
 
-##  Módulo de Administración[cite: 1]
+##  Módulo de Administración
 
 El administrador cuenta con acceso total al sistema, supervisando la recepción, agenda, expedientes y una sección exclusiva para el control del personal y usuarios del sistema.
 
