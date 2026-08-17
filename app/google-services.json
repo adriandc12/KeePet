@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52968775049",
+    "project_id": "keetpet-960fc",
+    "storage_bucket": "keetpet-960fc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52968775049:android:305b9c4d0dfee002e29558",
+        "android_client_info": {
+          "package_name": "com.example.keepet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOaNmHJV4-0PXLeBDeTVFL4sJ6fynTCkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
