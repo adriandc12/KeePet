@@ -4,7 +4,7 @@
 
 ---
 
-##  Tabla de Contenidos[cite: 1]
+##  Tabla de Contenidos
 
 - [Requisitos del Sistema](#-requisitos-del-sistema)
 - [Descarga e Instalación](#%EF%B8%8F-descarga-e-instalaci%C3%B3n)
