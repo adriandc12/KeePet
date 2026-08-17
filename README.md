@@ -6,7 +6,7 @@
 
 ##  Tabla de Contenidos
 
-- [Requisitos del Sistema](#-requisitos-del-sistema)
+- [Requisitos del Sistema](#-requisitos-del-sistema)  
 - [Descarga e Instalación](#%EF%B8%8F-descarga-e-instalaci%C3%B3n)
 - [Flujo de Autenticación](#-flujo-de-autenticaci%C3%B3n)
 - [Módulo de Cliente (Dueño de Mascota)](#-m%C3%B3dulo-de-cliente-due%C3%B1o-de-mascota)
