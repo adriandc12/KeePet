@@ -1,5 +1,4 @@
-# KeePet - Manual de usuario
-# 📖 KeePet - Manual de Usuario[cite: 1]
+# 📖 KeePet - Manual de Usuario
 
 > 🐾 **Plataforma móvil para la gestión, control y administración del cuidado integral de mascotas.**[cite: 1]
 
