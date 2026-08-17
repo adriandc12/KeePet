@@ -30,7 +30,7 @@
 
 ---
 
-##Requisitos del Sistema[cite: 1]
+##Requisitos del Sistema
 
 | Requisito | Especificación Mínima |
 | :--- | :--- |
@@ -41,7 +41,7 @@
 
 ---
 
-## Descarga e Instalación[cite: 1]
+## Descarga e Instalación
 
 1. **Descargar la App:** Descargue el archivo de la aplicación desde el repositorio oficial o tienda de aplicaciones correspondiente.
 2.  **Permisos de Instalación:** Al abrir el instalador por primera vez en Android, habilite la opción *"Permitir la instalación de aplicaciones de fuentes desconocidas"* en los ajustes de su navegador o gestor de archivos.
