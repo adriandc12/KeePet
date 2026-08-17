@@ -1,0 +1,57 @@
+{
+  "rules": {
+    "roles": {
+
+
+      ".read": "auth != null && root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente'",
+
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+
+        ".write": "auth != null && ( root.child('roles').child(auth.uid).val() == 'admin' || (auth.uid === $uid && !data.exists() && newData.val() == 'cliente') )",
+
+        ".validate": "newData.isString() && newData.val().matches(/^(cliente|empleado|doctor|admin)$/)"
+      }
+    },
+
+    "usuarios": {
+      ".read": "auth != null && root.child('roles').child(auth.uid).val() != 'cliente' && root.child('roles').child(auth.uid).exists()",
+
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+
+        "mascotas": {
+
+
+          ".write": "auth != null && ( auth.uid === $uid || (root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente') )",
+
+          "$mascotaId": {
+            "//": "Estos dos permisos ya no hacen falta: el .write de arriba los cubre, porque en Firebase basta con que UN nodo padre dé permiso. Se dejan escritos a proposito, para que quede claro que el historial y las notas medicas son cosa del personal aunque algun dia se restrinja el permiso general de mascotas.",
+
+            "historial": {
+              ".write": "auth != null && ( auth.uid === $uid || root.child('roles').child(auth.uid).val() == 'doctor' || root.child('roles').child(auth.uid).val() == 'admin' )"
+            },
+            "notasMedicas": {
+              ".write": "auth != null && ( auth.uid === $uid || root.child('roles').child(auth.uid).val() == 'doctor' || root.child('roles').child(auth.uid).val() == 'admin' )"
+            }
+          }
+        }
+      }
+    },
+
+    "citas": {
+      ".indexOn": ["clienteUid", "mascotaId", "doctorUid"],
+
+      ".read": "auth != null && ( (root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente') || (query.orderByChild == 'clienteUid' && query.equalTo == auth.uid) )",
+
+      "$citaId": {
+        ".read": "auth != null && ( data.child('clienteUid').val() === auth.uid || (root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente') )",
+
+        ".write": "auth != null && ( (newData.exists() && newData.child('clienteUid').val() === auth.uid) || (data.exists() && data.child('clienteUid').val() === auth.uid) || (root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente') )",
+
+        ".validate": "newData.hasChildren(['clienteUid', 'mascotaId', 'fecha', 'hora'])"
+      }
+    }
+  }
+}

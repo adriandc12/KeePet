@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew.bat :app:compileDebugKotlin --console=plain --no-daemon)",
+      "PowerShell($paths = @\\(\"C:\\\\Program Files\\\\Android\\\\Android Studio\\\\jbr\", \"$env:LOCALAPPDATA\\\\Programs\\\\Android Studio\\\\jbr\", \"C:\\\\Program Files\\\\Android\\\\Android Studio1\\\\jbr\"\\); foreach \\($p in $paths\\) { if \\(Test-Path \"$p\\\\bin\\\\java.exe\"\\) { Write-Output \"FOUND: $p\" } }; Get-ChildItem \"C:\\\\Program Files\\\\Java\",\"C:\\\\Program Files\\\\Eclipse Adoptium\" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName)",
+      "Bash(export JAVA_HOME=\"C:/Program Files/Android/Android Studio/jbr\")",
+      "Bash(./gradlew.bat :app:assembleDebug --console=plain)",
+      "PowerShell(Get-ChildItem *)",
+      "Read(//c/Users/adrix/.gradle/caches/modules-2/files-2.1/com.android.tools.build/**)",
+      "Read(//c/Users/adrix/.gradle/wrapper/dists/**)",
+      "Bash(curl -s --max-time 25 \"https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/maven-metadata.xml\")",
+      "Bash(./gradlew.bat :app:dependencies --configuration debugRuntimeClasspath --console=plain)",
+      "Bash(exit 1)",
+      "Bash(sed -i 's|com\\\\.example\\\\.keepet\\\\.modelos\\\\.\\\\\\(RegistroHistorial\\\\|Mascota\\\\|Cita\\\\|Usuario\\\\|Notificacion\\\\\\)|com.example.keepet.data.model.\\\\1|g' ui/screens/*.kt)",
+      "Bash(rm -rf modelos)",
+      "Bash(sed -i 's|PetRepository\\\\.updateUsuario\\(|viewModel.updateUsuario\\(|g' ProfileScreen.kt)",
+      "Bash(sed -i 's|usuario\\\\.copy\\(imagenUri = it\\\\.toString\\(\\), imagenRes = 0\\)|usuario.copy\\(imagenUri = it.toString\\(\\)\\)|' ProfileScreen.kt)",
+      "Bash(sed -i 's|usuario\\\\.copy\\(imagenUri = capturedImageUri\\\\.toString\\(\\), imagenRes = 0\\)|usuario.copy\\(imagenUri = capturedImageUri.toString\\(\\)\\)|' ProfileScreen.kt)",
+      "Bash(grep -vE \"^\\\\s*$\")",
+      "Bash(./gradlew.bat :app:compileDebugKotlin --console=plain)",
+      "Bash([ -s \"$f\" ])",
+      "Bash(sed -i 's|^import androidx\\\\.lifecycle\\\\.ViewModel$|import androidx.compose.runtime.getValue\\\\nimport androidx.compose.runtime.mutableStateOf\\\\nimport androidx.compose.runtime.setValue\\\\nimport androidx.lifecycle.ViewModel|' PetViewModel.kt)",
+      "Bash(sed -i 's|= viewModelScope\\\\.launch { repository\\\\.|= enSegundoPlano { repository.|g' PetViewModel.kt)",
+      "Bash(sed -i 's|viewModelScope\\\\.launch { repository\\\\.\\\\\\(addMedicalRecord\\\\|updateMedicalRecord\\\\|deleteMedicalRecord\\\\|updateMedicalNotes\\\\|deleteAllergy\\\\|updateProfile\\\\\\)|enSegundoPlano { repository.\\\\1|g' PetViewModel.kt)",
+      "Bash(sed -i 's|fun completeAppointment\\(appointmentId: String\\) = viewModelScope\\\\.launch {|fun completeAppointment\\(appointmentId: String\\) = enSegundoPlano {|' PetViewModel.kt)",
+      "Bash(sed -i 's|^        viewModelScope\\\\.launch { repository\\\\.|        enSegundoPlano { repository.|' PetViewModel.kt)",
+      "Bash(sed -i 's|return@launch|return@enSegundoPlano|g' PetViewModel.kt)",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/com/cloudinary/cloudinary-android/maven-metadata.xml\")",
+      "Bash(export MSYS_NO_PATHCONV=1)",
+      "Bash(/c/Users/adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe shell *)",
+      "Bash(/c/Users/adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe pull *)",
+      "Bash(cygpath -w /tmp/logcat_full.log)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
