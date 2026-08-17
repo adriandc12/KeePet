@@ -6,22 +6,22 @@
 
 ##  Tabla de Contenidos[cite: 1]
 
-- [Requisitos del Sistema](#-requisitos-del-sistema)[cite: 1]
-- [Descarga e Instalación](#%EF%B8%8F-descarga-e-instalaci%C3%B3n)[cite: 1]
-- [Flujo de Autenticación](#-flujo-de-autenticaci%C3%B3n)[cite: 1]
-- [Módulo de Cliente (Dueño de Mascota)](#-m%C3%B3dulo-de-cliente-due%C3%B1o-de-mascota)[cite: 1]
-  - 1️ [Registro y Creación de Expediente](#1%EF%B8%8F%E2%83%A3-registro-y-creaci%C3%B3n-de-expediente-en-3-pasos)[cite: 1]
-  - 2️ [Pantalla de Inicio y Filtros](#2%EF%B8%8F%E2%83%A3-pantalla-de-inicio-y-b%C3%BAsqueda)[cite: 1]
-  - 3️ [Agendamiento de Citas](#3%EF%B8%8F%E2%83%A3-agendamiento-de-citas)[cite: 1]
-  - 4️ [Gestión de Citas y Código QR](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-citas-y-c%C3%B3digo-qr)[cite: 1]
-  - 5️ [Expediente e Historial Médico](#5%EF%B8%8F%E2%83%A3-expediente-m%C3%A9dico-e-historial)[cite: 1]
-  - 6️ [Perfil de Usuario y Configuración](#6%EF%B8%8F%E2%83%A3-perfil-de-usuario-y-configuraci%C3%B3n)[cite: 1]
--  [Módulo de Médico y Empleado (Personal de Clínica)](#%EF%B8%8F-m%C3%B3dulo-de-m%C3%A9dico-y-empleado-personal-de-cl%C3%ADnica)[cite: 1]
+- [Requisitos del Sistema](#-requisitos-del-sistema)
+- [Descarga e Instalación](#%EF%B8%8F-descarga-e-instalaci%C3%B3n)
+- [Flujo de Autenticación](#-flujo-de-autenticaci%C3%B3n)
+- [Módulo de Cliente (Dueño de Mascota)](#-m%C3%B3dulo-de-cliente-due%C3%B1o-de-mascota)
+  - 1️ [Registro y Creación de Expediente](#1%EF%B8%8F%E2%83%A3-registro-y-creaci%C3%B3n-de-expediente-en-3-pasos)
+  - 2️ [Pantalla de Inicio y Filtros](#2%EF%B8%8F%E2%83%A3-pantalla-de-inicio-y-b%C3%BAsqueda)
+  - 3️ [Agendamiento de Citas](#3%EF%B8%8F%E2%83%A3-agendamiento-de-citas)
+  - 4️ [Gestión de Citas y Código QR](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-citas-y-c%C3%B3digo-qr)
+  - 5️ [Expediente e Historial Médico](#5%EF%B8%8F%E2%83%A3-expediente-m%C3%A9dico-e-historial)
+  - 6️ [Perfil de Usuario y Configuración](#6%EF%B8%8F%E2%83%A3-perfil-de-usuario-y-configuraci%C3%B3n)
+-  [Módulo de Médico y Empleado (Personal de Clínica)](#%EF%B8%8F-m%C3%B3dulo-de-m%C3%A9dico-y-empleado-personal-de-cl%C3%ADnica)
   - 1️ [Dashboard de Actividades del Día](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-del-d%C3%ADa)
   - 2️ [Agenda de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-de-pacientes)
   - 3️ [Gestión y Creación de Expediente Clínico](#3%EF%B8%8F%E2%83%A3-gesti%C3%B3n-y-creaci%C3%B3n-de-expediente-cl%C3%ADnico)
   - 4️ [Agendamiento Interno de Citas](#4%EF%B8%8F%E2%83%A3-agendamiento-interno-de-citas)
-- [Módulo de Administración](#%EF%B8%8F-m%C3%B3dulo-de-administrac%C3%B3n)[cite: 1]
+- [Módulo de Administración](#%EF%B8%8F-m%C3%B3dulo-de-administrac%C3%B3n)
   - 1️ [Dashboard de Actividades y Recepción Global](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-y-recepci%C3%B3n-global)
   - 2️ [Agenda y Control de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-y-control-de-pacientes)
   - 3️ [Expedientes e Historiales Clínicos](#3%EF%B8%8F%E2%83%A3-expedientes-e-historiales-cl%C3%ADnicos)
