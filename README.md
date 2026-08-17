@@ -85,7 +85,7 @@ El módulo de cliente permite a los propietarios registrar a sus mascotas, progr
 
 ### 3️ Agendamiento de Citas
 1.  **Seleccionar Mascota:** Elija la mascota que recibirá la atención (*Milo, Copito, Oliver, etc.*) o seleccione **+ Añadir** para registrar una nueva.
-2.  **Seleccionar Servicio:** Elija entre las opciones disponibles con tarifa transparente:[cite: 1]
+2.  **Seleccionar Servicio:** Elija entre las opciones disponibles con tarifa transparente:
    -  **Consulta General** (*$20.00*)
    -  **Vacunación** (*$15.00*)
    -  **Desparasitación**
