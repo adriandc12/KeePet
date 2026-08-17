@@ -10,23 +10,23 @@
 - [Descarga e Instalación](#%EF%B8%8F-descarga-e-instalaci%C3%B3n)[cite: 1]
 - [Flujo de Autenticación](#-flujo-de-autenticaci%C3%B3n)[cite: 1]
 - [Módulo de Cliente (Dueño de Mascota)](#-m%C3%B3dulo-de-cliente-due%C3%B1o-de-mascota)[cite: 1]
-  - 1️⃣ [Registro y Creación de Expediente](#1%EF%B8%8F%E2%83%A3-registro-y-creaci%C3%B3n-de-expediente-en-3-pasos)[cite: 1]
-  - 2️⃣ [Pantalla de Inicio y Filtros](#2%EF%B8%8F%E2%83%A3-pantalla-de-inicio-y-b%C3%BAsqueda)[cite: 1]
-  - 3️⃣ [Agendamiento de Citas](#3%EF%B8%8F%E2%83%A3-agendamiento-de-citas)[cite: 1]
-  - 4️⃣ [Gestión de Citas y Código QR](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-citas-y-c%C3%B3digo-qr)[cite: 1]
-  - 5️⃣ [Expediente e Historial Médico](#5%EF%B8%8F%E2%83%A3-expediente-m%C3%A9dico-e-historial)[cite: 1]
-  - 6️⃣ [Perfil de Usuario y Configuración](#6%EF%B8%8F%E2%83%A3-perfil-de-usuario-y-configuraci%C3%B3n)[cite: 1]
+  - 1️ [Registro y Creación de Expediente](#1%EF%B8%8F%E2%83%A3-registro-y-creaci%C3%B3n-de-expediente-en-3-pasos)[cite: 1]
+  - 2️ [Pantalla de Inicio y Filtros](#2%EF%B8%8F%E2%83%A3-pantalla-de-inicio-y-b%C3%BAsqueda)[cite: 1]
+  - 3️ [Agendamiento de Citas](#3%EF%B8%8F%E2%83%A3-agendamiento-de-citas)[cite: 1]
+  - 4️ [Gestión de Citas y Código QR](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-citas-y-c%C3%B3digo-qr)[cite: 1]
+  - 5️ [Expediente e Historial Médico](#5%EF%B8%8F%E2%83%A3-expediente-m%C3%A9dico-e-historial)[cite: 1]
+  - 6️ [Perfil de Usuario y Configuración](#6%EF%B8%8F%E2%83%A3-perfil-de-usuario-y-configuraci%C3%B3n)[cite: 1]
 -  [Módulo de Médico y Empleado (Personal de Clínica)](#%EF%B8%8F-m%C3%B3dulo-de-m%C3%A9dico-y-empleado-personal-de-cl%C3%ADnica)[cite: 1]
-  - 1️⃣ [Dashboard de Actividades del Día](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-del-d%C3%ADa)
-  - 2️⃣ [Agenda de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-de-pacientes)
-  - 3️⃣ [Gestión y Creación de Expediente Clínico](#3%EF%B8%8F%E2%83%A3-gesti%C3%B3n-y-creaci%C3%B3n-de-expediente-cl%C3%ADnico)
-  - 4️⃣ [Agendamiento Interno de Citas](#4%EF%B8%8F%E2%83%A3-agendamiento-interno-de-citas)
+  - 1️ [Dashboard de Actividades del Día](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-del-d%C3%ADa)
+  - 2️ [Agenda de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-de-pacientes)
+  - 3️ [Gestión y Creación de Expediente Clínico](#3%EF%B8%8F%E2%83%A3-gesti%C3%B3n-y-creaci%C3%B3n-de-expediente-cl%C3%ADnico)
+  - 4️ [Agendamiento Interno de Citas](#4%EF%B8%8F%E2%83%A3-agendamiento-interno-de-citas)
 - [Módulo de Administración](#%EF%B8%8F-m%C3%B3dulo-de-administrac%C3%B3n)[cite: 1]
-  - 1️⃣ [Dashboard de Actividades y Recepción Global](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-y-recepci%C3%B3n-global)
-  - 2️⃣ [Agenda y Control de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-y-control-de-pacientes)
-  - 3️⃣ [Expedientes e Historiales Clínicos](#3%EF%B8%8F%E2%83%A3-expedientes-e-historiales-cl%C3%ADnicos)
-  - 4️⃣ [Gestión de Usuarios y Roles del Sistema](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-usuarios-y-roles-del-sistema-exclusivo-administrador)
-  - 5️⃣ [Agendamiento Directo de Citas](#5%EF%B8%8F%E2%83%A3-agendamiento-directo-de-citas)
+  - 1️ [Dashboard de Actividades y Recepción Global](#1%EF%B8%8F%E2%83%A3-dashboard-de-actividades-y-recepci%C3%B3n-global)
+  - 2️ [Agenda y Control de Pacientes](#2%EF%B8%8F%E2%83%A3-agenda-y-control-de-pacientes)
+  - 3️ [Expedientes e Historiales Clínicos](#3%EF%B8%8F%E2%83%A3-expedientes-e-historiales-cl%C3%ADnicos)
+  - 4️ [Gestión de Usuarios y Roles del Sistema](#4%EF%B8%8F%E2%83%A3-gesti%C3%B3n-de-usuarios-y-roles-del-sistema-exclusivo-administrador)
+  - 5️ [Agendamiento Directo de Citas](#5%EF%B8%8F%E2%83%A3-agendamiento-directo-de-citas)
 
 ---
 
@@ -168,7 +168,7 @@ El administrador cuenta con acceso total al sistema, supervisando la recepción,
 -  **Menú Inferior Exclusivo ("Usuarios"):** Pestaña dedicada a la administración de cuentas registradas en KeePet.
 -  **Asignación y Cambio de Roles:** Modificación de los permisos de los usuarios del sistema (*Administrador, Doctor, Empleado, Usuario*).
 -  **Eliminación de Cuentas:** Opción directa para dar de baja o eliminar usuarios y personal de la base de datos.
-- 📲 **Escanear QR de Usuario:** Opción para vincular cuentas o verificar credenciales mediante escaneo de código QR.
+-  **Escanear QR de Usuario:** Opción para vincular cuentas o verificar credenciales mediante escaneo de código QR.
 
 ### 5️ Agendamiento Directo de Citas
 -  **Módulo de Reserva Administrativa:** Herramienta para agendar citas directamente desde recepción o administración.
