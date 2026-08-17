@@ -13,6 +13,7 @@ import com.example.keepet.data.model.RegistroHistorial
 import com.example.keepet.data.model.Rol
 import com.example.keepet.data.model.UsuarioConRol
 import com.example.keepet.data.repository.StaffRepository
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -210,10 +211,18 @@ class StaffViewModel(
      * La regla ya esta corregida, pero esto se queda igualmente: una pantalla que no
      * puede cargar una lista debe quedarse vacia y avisar, nunca cerrarse. Si algun
      * dia una regla se toca mal, se vera un aviso en vez de un cierre inexplicable.
+     *
+     * Un caso NO es un error de verdad: cerrar sesion tambien cancela estos mismos
+     * listeners (las reglas dejan de dar permiso en cuanto auth.currentUser pasa a
+     * null), y antes eso se enseñaba como "No se pudo cargar la agenda" justo encima
+     * de la pantalla de login, como si algo hubiera ido mal. Si ya no hay nadie con
+     * la sesion iniciada, el aviso no le sirve a nadie: se ignora en silencio.
      */
     private fun <T> Flow<List<T>>.sinTumbarLaApp(aviso: String): Flow<List<T>> =
         catch { error ->
-            mensaje = "$aviso (${error.localizedMessage})"
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                mensaje = "$aviso (${error.localizedMessage})"
+            }
             emit(emptyList())
         }
 
@@ -221,14 +230,14 @@ class StaffViewModel(
     // Mensajes para la pantalla
     // ------------------------------------------------------------------
 
-    var mensaje by mutableStateOf<String?>(null)
+    override var mensaje by mutableStateOf<String?>(null)
         private set
 
     /** Cita encontrada al escanear un QR o buscar un codigo. Se enseña en un dialogo. */
     var citaEscaneada by mutableStateOf<Cita?>(null)
         private set
 
-    fun limpiarMensaje() {
+    override fun limpiarMensaje() {
         mensaje = null
     }
 

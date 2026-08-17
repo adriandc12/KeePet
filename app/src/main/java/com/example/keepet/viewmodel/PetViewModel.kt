@@ -53,6 +53,12 @@ class PetViewModel(
         errorGuardado = null
     }
 
+    // GestorDeMascotas pide "mensaje"/"limpiarMensaje" en vez de "errorGuardado"/
+    // "limpiarError" porque StaffViewModel usa esos otros nombres. Se delega en las
+    // propiedades que ya existian para no duplicar el estado.
+    override val mensaje: String? get() = errorGuardado
+    override fun limpiarMensaje() = limpiarError()
+
     /**
      * Lanza una operacion contra Firebase capturando los fallos.
      *

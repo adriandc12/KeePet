@@ -1,6 +1,7 @@
 package com.example.keepet.data.repository
 
 import com.example.keepet.data.model.Rol
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -54,6 +55,28 @@ class AuthRepository {
     }
 
     fun cerrarSesion() = auth.signOut()
+
+    /**
+     * Cambia la contraseña de quien tiene la sesion abierta.
+     *
+     * ANTES EL DIALOGO "Cambiar Contraseña" (ProfileScreen.SecurityDialog) SOLO
+     * VALIDABA LOS CAMPOS Y CERRABA: no llamaba a Firebase para nada, asi que la
+     * contraseña de verdad nunca cambiaba. Por eso alguien podia "cambiarla", cerrar
+     * sesion, y solo la contraseña VIEJA seguia funcionando.
+     *
+     * Se reautentica con la contraseña ACTUAL antes de cambiarla por dos motivos: (1)
+     * Firebase exige un inicio de sesion "reciente" para dejar tocar la contraseña
+     * (`updatePassword` sola lanza FirebaseAuthRecentLoginRequiredException si la
+     * sesion ya lleva un rato abierta) y (2) de paso comprueba que quien la cambia de
+     * verdad sabe la actual, en vez de que baste con tener el telefono desbloqueado.
+     */
+    suspend fun cambiarContrasena(contrasenaActual: String, contrasenaNueva: String) {
+        val usuario = auth.currentUser ?: throw IllegalStateException("No hay sesión iniciada")
+        val correo = usuario.email ?: throw IllegalStateException("Esta cuenta no tiene correo")
+        val credencial = EmailAuthProvider.getCredential(correo, contrasenaActual)
+        usuario.reauthenticate(credencial).await()
+        usuario.updatePassword(contrasenaNueva).await()
+    }
 
     // ------------------------------------------------------------------
     // Roles

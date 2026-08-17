@@ -72,6 +72,18 @@ fun HomeScreen(
         }
     }
 
+    // Si el cliente entra a "Agendar" sin tener ninguna mascota registrada, agendar
+    // no tiene sentido todavia (no hay a quien ponerle la cita) y antes la pantalla se
+    // veia vacia con solo el circulo de "+ Añadir", sin explicar por que. Ahora se
+    // avisa y se le lleva derecho al formulario de añadir mascota.
+    LaunchedEffect(selectedTab, petList) {
+        if (selectedTab == "Agendar" && petList.isEmpty()) {
+            snackbarHostState.showSnackbar("Primero agrega una mascota para poder agendar una cita")
+            selectedTab = "Inicio"
+            onAddPetClick()
+        }
+    }
+
     // Filtering logic
     val filteredPets = petList.filter { pet ->
         val matchesSearch = pet.nombre.contains(searchQuery, ignoreCase = true) || 
@@ -241,7 +253,14 @@ fun HeaderSection(title: String, onNotificationsClick: () -> Unit) {
     }
     Spacer(modifier = Modifier.height(16.dp))
     Text(
-        text = if (title == "Inicio") "¡Hola! 👋" else title,
+        text = when (title) {
+            "Inicio" -> "¡Hola! 👋"
+            // El tabId sigue siendo "Citas" (mira KeePetBottomNavigation), pero el
+            // titulo que ve el cliente arriba de la lista tiene que decir lo mismo
+            // que la pestaña de abajo: "Mis citas".
+            "Citas" -> "Mis citas"
+            else -> title
+        },
         fontSize = 22.sp,
         fontWeight = FontWeight.Bold,
         color = TextColor
@@ -682,13 +701,15 @@ fun AppointmentCard(
     onEdit: (Cita) -> Unit,
     onMostrarQr: () -> Unit
 ) {
-    var pet by remember { mutableStateOf<Mascota?>(null) }
-
-    LaunchedEffect(appointment.mascotaId) {
-        pet = viewModel.getPetById(appointment.mascotaId)
-    }
-
-    val currentPet = pet
+    // Antes esto era "var pet by remember { mutableStateOf<Mascota?>(null) }" relleno
+    // una sola vez con viewModel.getPetById() (una lectura suelta a Firebase, no un
+    // listener). Si despues cambiabas la foto de esa mascota, esta tarjeta se quedaba
+    // con la copia vieja hasta salir y volver a entrar a la pantalla: por eso en
+    // "Mis citas" se seguia viendo la foto anterior aunque en Inicio ya saliera la
+    // nueva. Ahora sale de la misma lista en tiempo real que ya usa el resto de la
+    // app (allPets), asi que se actualiza sola en cuanto cambia en la base de datos.
+    val pets by viewModel.allPets.collectAsState()
+    val currentPet = pets.find { it.id == appointment.mascotaId }
     val sePuedeCambiar = appointment.estado == Cita.ESTADO_PENDIENTE
     val estaEnCurso = appointment.estado in Cita.ESTADOS_ACTIVOS
 
@@ -1064,7 +1085,12 @@ fun KeePetBottomNavigation(selectedTab: String, onTabSelected: (String) -> Unit)
         // las mismas tarjetas y los mismos botones que antes.
         val items = listOf(
             Triple("Inicio", Icons.Default.Home, "Inicio"),
-            Triple("Citas", Icons.Default.CalendarMonth, "Citas"),
+            // El texto que se VE es "Mis citas" (mas personal para el cliente, que solo
+            // ve las suyas); el tabId se deja igual ("Citas") para no tocar el resto de
+            // comparaciones de esta pantalla (when(selectedTab), HeaderSection...). En
+            // el lado del personal la pestaña equivalente sigue diciendo "Agenda": ahi
+            // se ven las citas de TODOS los clientes, no tiene sentido llamarlo "mis".
+            Triple("Mis citas", Icons.Default.CalendarMonth, "Citas"),
             Triple("Agendar", Icons.Default.AddCircle, "Agendar"),
             Triple("Perfil", Icons.Default.Person, "Perfil")
         )

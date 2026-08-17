@@ -30,7 +30,17 @@
       "Bash(/c/Users/adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe shell *)",
       "Bash(/c/Users/adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe pull *)",
       "Bash(cygpath -w /tmp/logcat_full.log)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash($HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe devices *)",
+      "Read(//c/Users/adrix/AppData/Local/Android/Sdk/emulator/**)",
+      "Bash('C:\\\\Users\\\\adrix/AppData/Local/Android/Sdk/emulator/emulator.exe' -list-avds)",
+      "Bash('C:\\\\Users\\\\adrix/AppData/Local/Android/Sdk/emulator/emulator.exe' -avd Pixel_10_Pro_XL -no-snapshot-load)",
+      "Bash(disown)",
+      "Bash(echo \"emulator launching, pid $!\")",
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio/jbr\")",
+      "Read(//c/Program Files/Android/Android Studio/jbr/**)",
+      "Bash('C:\\\\Users\\\\adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe' shell *)",
+      "Bash('C:\\\\Users\\\\adrix/AppData/Local/Android/Sdk/platform-tools/adb.exe' exec-out *)"
     ]
   }
 }

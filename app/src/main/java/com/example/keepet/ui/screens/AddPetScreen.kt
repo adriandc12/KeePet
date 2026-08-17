@@ -1,5 +1,6 @@
 package com.example.keepet.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -56,6 +58,17 @@ fun AddPetScreen(
     initialStep: Int = 1
 ) {
     var step by remember { mutableIntStateOf(initialStep) }
+
+    // Mismo aviso que en PetDetailScreen: si guardar falla (sin internet, permiso
+    // denegado...) el usuario lo ve aqui, en vez de que el formulario se cierre sin
+    // decir nada y parezca que el cambio se perdio.
+    val context = LocalContext.current
+    LaunchedEffect(viewModel.mensaje) {
+        viewModel.mensaje?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            viewModel.limpiarMensaje()
+        }
+    }
 
     // Quien rellena esto: la clinica o el dueño. Cambia cuantos pasos hay y como se
     // llaman las cosas ("expediente" cuando lo abre la clinica, "mascota" cuando la

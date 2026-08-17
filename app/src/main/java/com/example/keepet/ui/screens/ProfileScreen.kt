@@ -4,6 +4,7 @@ package com.example.keepet.ui.screens
 
 import android.Manifest
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -41,11 +42,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.keepet.R
 import com.example.keepet.data.model.Usuario
+import com.example.keepet.data.repository.AuthRepository
 import com.example.keepet.ui.components.NOMBRES_AVATAR
 import com.example.keepet.ui.components.avatarPorNombre
 import com.example.keepet.ui.components.createImageUri
 import com.example.keepet.ui.theme.*
 import com.example.keepet.viewmodel.PetViewModel
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import kotlinx.coroutines.launch
 
 /**
  * Antes leia el usuario de "PetRepository.usuario", una variable global dentro de
@@ -462,12 +469,26 @@ fun EditProfileDialog(usuario: Usuario, onDismiss: () -> Unit, onConfirm: (Usuar
     )
 }
 
+/**
+ * ANTES este dialogo solo VALIDABA los campos (que coincidan, que tengan 6+
+ * caracteres) y cerraba con onDismiss(): nunca llamaba a Firebase, asi que la
+ * contraseña de verdad no cambiaba nunca. Por fuera parecia que habia funcionado
+ * (el dialogo se cerraba sin error), pero al cerrar sesion solo la contraseña VIEJA
+ * seguia sirviendo. Ahora si llama a AuthRepository.cambiarContrasena(), que
+ * reautentica con la contraseña actual (Firebase lo exige para dejar tocar la
+ * contraseña) y luego la cambia de verdad.
+ */
 @Composable
 fun SecurityDialog(onDismiss: () -> Unit) {
     var currentPass by remember { mutableStateOf("") }
     var newPass by remember { mutableStateOf("") }
     var confirmPass by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
+    var cambiando by remember { mutableStateOf(false) }
+
+    val authRepository = remember { AuthRepository() }
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -530,21 +551,48 @@ fun SecurityDialog(onDismiss: () -> Unit) {
         },
         confirmButton = {
             Button(
-                onClick = { 
-                    if (newPass != confirmPass) {
-                        error = "Las contraseñas no coinciden"
-                    } else if (newPass.length < 6) {
-                        error = "La contraseña debe tener al menos 6 caracteres"
-                    } else {
-                        onDismiss() 
+                onClick = {
+                    when {
+                        currentPass.isBlank() -> error = "Escribe tu contraseña actual"
+                        newPass != confirmPass -> error = "Las contraseñas no coinciden"
+                        newPass.length < 6 -> error = "La contraseña debe tener al menos 6 caracteres"
+                        else -> {
+                            error = ""
+                            cambiando = true
+                            scope.launch {
+                                try {
+                                    authRepository.cambiarContrasena(currentPass, newPass)
+                                    cambiando = false
+                                    Toast.makeText(
+                                        context, "Contraseña actualizada", Toast.LENGTH_SHORT
+                                    ).show()
+                                    onDismiss()
+                                } catch (e: Exception) {
+                                    cambiando = false
+                                    error = when (e) {
+                                        // La contraseña ACTUAL que escribio no es la que
+                                        // tiene la cuenta: la reautenticacion la rechaza.
+                                        is FirebaseAuthInvalidCredentialsException ->
+                                            "La contraseña actual no es correcta"
+                                        is FirebaseAuthWeakPasswordException ->
+                                            "La contraseña nueva es muy débil"
+                                        is FirebaseAuthRecentLoginRequiredException ->
+                                            "Por seguridad, cierra sesión y vuelve a entrar antes de cambiarla"
+                                        is FirebaseNetworkException -> "Sin conexión a internet"
+                                        else -> e.localizedMessage ?: "No se pudo cambiar la contraseña"
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
+                enabled = !cambiando,
                 colors = ButtonDefaults.buttonColors(containerColor = AccentButton),
                 shape = RoundedCornerShape(12.dp)
-            ) { Text("Actualizar", color = White) }
+            ) { Text(if (cambiando) "Actualizando..." else "Actualizar", color = White) }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancelar", color = GrayHint) }
+            TextButton(onClick = onDismiss, enabled = !cambiando) { Text("Cancelar", color = GrayHint) }
         },
         containerColor = White,
         shape = RoundedCornerShape(24.dp)

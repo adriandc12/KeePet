@@ -1,5 +1,6 @@
 package com.example.keepet.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -268,6 +269,7 @@ fun StepOneSelect(
     onConfirm: () -> Unit
 ) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
     val pets by viewModel.allPets.collectAsState()
 
     // Generar horas de 8:00 AM a 4:00 PM (cada 1 hora)
@@ -404,8 +406,29 @@ fun StepOneSelect(
 
         Spacer(modifier = Modifier.height(32.dp))
 
+        val faltaTodo = selectedPet != null && selectedService != null && selectedDate != null && selectedTime.isNotEmpty()
         Button(
-            onClick = onConfirm,
+            onClick = {
+                // El boton se deja SIEMPRE clicable (antes estaba "enabled = faltaTodo",
+                // y un boton deshabilitado en Compose ni siquiera dispara el click) para
+                // poder avisar QUE falta en vez de que no pase nada al tocarlo. Se avisa
+                // de un solo requisito a la vez, en el mismo orden en que se rellenan.
+                when {
+                    selectedPet == null -> Toast.makeText(
+                        context, "Elige primero una de tus mascotas", Toast.LENGTH_SHORT
+                    ).show()
+                    selectedService == null -> Toast.makeText(
+                        context, "Elige el servicio que necesita tu mascota", Toast.LENGTH_SHORT
+                    ).show()
+                    selectedDate == null -> Toast.makeText(
+                        context, "Elige una fecha para la cita", Toast.LENGTH_SHORT
+                    ).show()
+                    selectedTime.isEmpty() -> Toast.makeText(
+                        context, "Elige un horario disponible", Toast.LENGTH_SHORT
+                    ).show()
+                    else -> onConfirm()
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
@@ -413,13 +436,12 @@ fun StepOneSelect(
                 containerColor = AccentButton,
                 disabledContainerColor = AccentButton.copy(alpha = 0.3f)
             ),
-            shape = RoundedCornerShape(50.dp),
-            enabled = selectedPet != null && selectedService != null && selectedDate != null && selectedTime.isNotEmpty()
+            shape = RoundedCornerShape(50.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Confirmar cita", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = if (selectedPet != null && selectedService != null && selectedDate != null && selectedTime.isNotEmpty()) White else TextColor.copy(alpha = 0.3f))
+                Text("Confirmar cita", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = if (faltaTodo) White else TextColor.copy(alpha = 0.3f))
                 Spacer(modifier = Modifier.width(8.dp))
-                Icon(Icons.Default.CheckCircleOutline, contentDescription = null, modifier = Modifier.size(20.dp), tint = if (selectedPet != null && selectedService != null && selectedDate != null && selectedTime.isNotEmpty()) White else TextColor.copy(alpha = 0.3f))
+                Icon(Icons.Default.CheckCircleOutline, contentDescription = null, modifier = Modifier.size(20.dp), tint = if (faltaTodo) White else TextColor.copy(alpha = 0.3f))
             }
         }
         Spacer(modifier = Modifier.height(32.dp))

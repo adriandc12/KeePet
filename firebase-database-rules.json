@@ -27,7 +27,7 @@
           ".write": "auth != null && ( auth.uid === $uid || (root.child('roles').child(auth.uid).exists() && root.child('roles').child(auth.uid).val() != 'cliente') )",
 
           "$mascotaId": {
-            "//": "Estos dos permisos ya no hacen falta: el .write de arriba los cubre, porque en Firebase basta con que UN nodo padre dé permiso. Se dejan escritos a proposito, para que quede claro que el historial y las notas medicas son cosa del personal aunque algun dia se restrinja el permiso general de mascotas.",
+
 
             "historial": {
               ".write": "auth != null && ( auth.uid === $uid || root.child('roles').child(auth.uid).val() == 'doctor' || root.child('roles').child(auth.uid).val() == 'admin' )"

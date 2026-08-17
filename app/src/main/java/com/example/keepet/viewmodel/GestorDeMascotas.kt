@@ -58,6 +58,23 @@ interface GestorDeMascotas {
      */
     val puedeEditarDatosClinicos: Boolean
 
+    /**
+     * Ultimo aviso para enseñar en pantalla: que un guardado fallo (sin internet,
+     * permiso denegado...) o que salio bien. Null cuando no hay nada pendiente.
+     *
+     * POR QUE HACIA FALTA: PetViewModel ya tenia "errorGuardado" y StaffViewModel ya
+     * tenia "mensaje", pero ninguno de los dos se enseñaba dentro de PetDetailScreen ni
+     * AddPetScreen: el Snackbar solo estaba montado en HomeScreen/StaffHomeScreen, las
+     * pantallas "de fuera". Al editar un expediente desde dentro (PetDetailScreen) y
+     * fallar el guardado, no pasaba nada visible: ni se guardaba ni avisaba. Con esto
+     * en el contrato, las dos pantallas compartidas pueden avisar sin importar quien
+     * las este usando.
+     */
+    val mensaje: String?
+
+    /** Marca el aviso como ya mostrado. */
+    fun limpiarMensaje()
+
     fun addPet(pet: Mascota)
 
     fun updatePet(pet: Mascota)
