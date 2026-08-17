@@ -1,4 +1,4 @@
-# Enlace a Figma https://www.figma.com/design/aRgdJ1qTWShh0WifFP7Wyt/ShielDrive_Laboratorio1?node-id=0-1&t=vUdVTSYthLNs7V6E-1
+# Enlace a Figma https://www.figma.com/design/EoLxx02ZO1RgonULxe9xRh/KeePet_Laboratorio1?node-id=0-1&t=g7g9xGoERp8Huao3-1
 
 # KeePet - Manual de Usuario
 
