@@ -1,3 +1,5 @@
+# Enlace a Figma https://www.figma.com/design/aRgdJ1qTWShh0WifFP7Wyt/ShielDrive_Laboratorio1?node-id=0-1&t=vUdVTSYthLNs7V6E-1
+
 # KeePet - Manual de Usuario
 
 > 🐾 **Plataforma móvil para la gestión, control y administración del cuidado integral de mascotas.*
